@@ -590,21 +590,21 @@ var PatientformComponent = (function () {
             freetext: this.form.get('freetext').value,
         };
         this.authService.registerPatient(user).subscribe(function (data) {
-            console.log("data came");
+            //console.log("data came");
             if (data.success) {
                 _this.messageClass = 'alert alert-success';
                 _this.message = data.message;
                 setTimeout(function () {
                     _this.router.navigate(['/home']);
                 }, 3000);
-                console.log("saved");
+                //console.log("saved");
             }
             else {
                 _this.messageClass = 'alert alert-danger';
                 _this.processing = false;
                 _this.message = data.message;
                 _this.enableForm();
-                console.log(data.message);
+                //console.log(data.message);
             }
         });
     };
@@ -724,29 +724,29 @@ var PatientlistComponent = (function () {
     PatientlistComponent.prototype.showList = function () {
         var _this = this;
         this.authService.getPatient().subscribe(function (data) {
-            console.log("data came");
+            //console.log("data came");
             if (data.success) {
                 _this.patientlist = data.user;
-                console.log(_this.patientlist);
+                //console.log(this.patientlist);
             }
             else {
-                console.log(data.message);
+                //console.log(data.message);
             }
         });
     };
     PatientlistComponent.prototype.search = function (event) {
         var _this = this;
-        console.log(event.target.value);
-        console.log(event);
+        //console.log(event.target.value);
+        //console.log(event);
         if (event.target.value && event.type == "keyup") {
             this.authService.getSearchedPatient(event.target.value).subscribe(function (data) {
-                console.log("data came");
+                //console.log("data came");
                 if (data.success) {
                     _this.patientlist = data.user;
-                    console.log(_this.patientlist);
+                    //console.log(this.patientlist);
                 }
                 else {
-                    console.log(data.message);
+                    //console.log(data.message);
                 }
             });
         }
@@ -755,9 +755,9 @@ var PatientlistComponent = (function () {
         }
     };
     PatientlistComponent.prototype.modalData = function (i) {
-        console.log("modal nuber" + i);
+        //console.log("modal nuber"+i);
         this.modal = this.patientlist[i];
-        console.log(this.modal);
+        //console.log(this.modal);
     };
     return PatientlistComponent;
 }());

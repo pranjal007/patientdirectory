@@ -49,7 +49,7 @@ export class PatientformComponent implements OnInit {
       age: ['', Validators.compose([
         Validators.required, 
         Validators.minLength(1), 
-        Validators.maxLength(2), 
+        Validators.maxLength(2),
       ])],
       DOB: ['', Validators.compose([
         Validators.required 
@@ -124,20 +124,20 @@ export class PatientformComponent implements OnInit {
     }
         
     this.authService.registerPatient(user).subscribe(data => {
-      console.log("data came");
+      //console.log("data came");
       if (data.success) {  
         this.messageClass = 'alert alert-success';
         this.message = data.message;
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 3000);
-        console.log("saved");
+        //console.log("saved");
       } else {
         this.messageClass = 'alert alert-danger';
         this.processing = false;
         this.message = data.message;
         this.enableForm();
-        console.log(data.message);
+        //console.log(data.message);
       }
     });
   }

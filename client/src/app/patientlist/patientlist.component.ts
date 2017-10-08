@@ -35,28 +35,28 @@ export class PatientlistComponent implements OnInit {
 
   showList(){
       this.authService.getPatient().subscribe(data => {
-      console.log("data came");
+      //console.log("data came");
       if (data.success) {  
         this.patientlist = data.user;
-        console.log(this.patientlist);
+        //console.log(this.patientlist);
       } else {
-        console.log(data.message);
+        //console.log(data.message);
       }
     });
   }
 
   search(event)
   {
-    console.log(event.target.value);
-    console.log(event);
+    //console.log(event.target.value);
+    //console.log(event);
     if(event.target.value && event.type=="keyup"){
     this.authService.getSearchedPatient(event.target.value).subscribe(data => {
-      console.log("data came");
+      //console.log("data came");
       if (data.success) {  
         this.patientlist = data.user;
-        console.log(this.patientlist);
+        //console.log(this.patientlist);
       } else {
-        console.log(data.message);
+        //console.log(data.message);
       }
     });
   }
@@ -66,10 +66,10 @@ export class PatientlistComponent implements OnInit {
 }
 
 modalData(i:number){
-  console.log("modal nuber"+i);
+  //console.log("modal nuber"+i);
   
   this.modal=this.patientlist[i];
-  console.log(this.modal);
+  //console.log(this.modal);
 }
 
 }
