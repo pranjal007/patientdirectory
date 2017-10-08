@@ -15,8 +15,8 @@ export class PatientformComponent implements OnInit {
   message;
   messageClass;
   processing = false;
-  emailValid;
-  emailMessage;
+  emailValid=true;
+  emailMessage="everything is fine";
   ageValid;
   ageMessage;
   phoneValid;
