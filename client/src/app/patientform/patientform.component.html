@@ -1,12 +1,3 @@
-<div class="row show-hide-message">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
-      <div [ngClass]="messageClass">
-      {{ message }}
-    </div>
-  </div>
-  <div class="col-md-3"></div>
-</div>
 
 <div class="container" id="formwrapper">
 
@@ -31,7 +22,7 @@
           <div class="form-group">
             <label for="email">Email</label>
             <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) ||(!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}">
-              <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" />
+              <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" (blur)="checkEmail() />
               <!-- Validation -->
               <ul class="help-block">
                 <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
