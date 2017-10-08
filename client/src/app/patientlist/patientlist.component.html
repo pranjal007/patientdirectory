@@ -1,0 +1,72 @@
+
+<div class="container" id="formwrapper">
+
+  <div class="row">
+    <form [formGroup]="form">
+      <div class="form-group col-md-6">
+        <label for="name">Search</label>
+        <div>
+          <input type="text" (keyup)="search($event)" (blur)="search($event)" name="name" class="form-control" autocomplete="off" placeholder="*Patient's Name" formControlName="name" />
+        </div>
+      </div>
+      </form>
+  <div class="row">
+      <div class="col-md-12" id="listwrapper">
+        <div *ngFor="let patient of patientlist; let i = index" class="patientlist">
+              <div id="firstname">
+                  {{patient.firstname}} <br />{{patient.lastname}}
+                </div>
+              <div id="lastname">
+              </div>
+              <div id="detailsbtn">
+              <button type="button" class="btn btn-info btn-xs" data-toggle="modal" 
+              data-target="#myModal" (click)="modalData(i)">Details</button>
+              </div>
+              <div id="myModal" class="modal fade" role="dialog" *ngIf="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Patient Details</h4>
+                      </div>
+                      <div class="modal-body" >
+                        <ul class="list-group">
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Name</h4> 
+                                <p class="list-group-item-text">{{modal.firstname}} {{modal.lastname}}</p>
+                            </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Email</h4>
+                            <p class="list-group-item-text">{{modal.email}}</p>
+                            </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Age</h4>
+                              <p class="list-group-item-text">{{modal.age}}</p>
+                              </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">DOB</h4>
+                              <p class="list-group-item-text">{{modal.DOB | slice:0:10}}</p>
+                              </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Gender</h4>
+                              <p class="list-group-item-text">{{modal.gender}}</p>
+                              </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Phone No.</h4>
+                              <p class="list-group-item-text">{{modal.phone}}</p>
+                              </li>
+                            <li class="list-group-item"><h4 class="list-group-item-heading">Additional Info</h4>
+                              <p class="list-group-item-text">{{modal.freetext}}</p>
+                              </li>
+                          </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+              </div>
+
+
+              
+          </div>
+      </div>
+
+    </div>
+
+</div>

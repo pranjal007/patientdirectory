@@ -1,0 +1,147 @@
+<div class="row show-hide-message">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<div class="container" id="formwrapper">
+
+  <div class="row">
+
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6" >
+    <h4>Submit Form</h4><hr />
+    <div class="row show-hide-message">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onRegisterSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) ||(!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}">
+              <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" (blur)="checkEmail()" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
+                <li *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30</li>
+                <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail</li>
+                <li *ngIf="emailMessage && !form.controls.email.errors">{{ emailMessage}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <div [ngClass]="{'has-error': (form.controls.firstname.errors && form.controls.firstname.dirty), 'has-success': !form.controls.firstname.errors}">
+              <input type="text" name="firstname" class="form-control" autocomplete="off" placeholder="*firstname" formControlName="firstname"  />
+              <ul class="help-block">
+                <li *ngIf="form.controls.firstname.errors?.required && form.controls.firstname.dirty">This field is required</li>
+                <li *ngIf="(form.controls.firstname.errors?.minlength && form.controls.firstname.dirty || form.controls.firstname.errors?.maxlength && form.controls.firstname.dirty ) && form.controls.firstname.dirty">Minimum characters: 1, Maximum characters: 20</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <div [ngClass]="{'has-error': (form.controls.lastname.errors && form.controls.lastname.dirty), 'has-success': !form.controls.lastname.errors}">
+              <input type="text" name="lastname" class="form-control" autocomplete="off" placeholder="*lastname" formControlName="lastname"  />
+              <ul class="help-block">
+                <li *ngIf="form.controls.lastname.errors?.required && form.controls.lastname.dirty">This field is required</li>
+                <li *ngIf="(form.controls.lastname.errors?.minlength && form.controls.lastname.dirty || form.controls.lastname.errors?.maxlength && form.controls.lastname.dirty ) && form.controls.lastname.dirty">Minimum characters: 1, Maximum characters: 20</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <div [ngClass]="{'has-error': (form.controls.age.errors && form.controls.age.dirty) ||(!ageValid && form.controls.age.dirty), 'has-success': !form.controls.age.errors && ageValid}">
+              <input type="number" name="age" class="form-control" autocomplete="off" placeholder="*Age" formControlName="age" (keyup)="checkAge($event)"/>
+              <ul class="help-block">
+                <li *ngIf="form.controls.age.errors?.required && form.controls.age.dirty">This field is required</li>
+                <li *ngIf="(form.controls.age.errors?.minlength && form.controls.age.dirty || form.controls.age.errors?.maxlength && form.controls.age.dirty ) && form.controls.age.dirty">Enter age in double digit</li>
+                <li *ngIf="ageMessage && !ageValid">{{ ageMessage}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="DOB">Date Of Birth</label>
+            <div [ngClass]="{'has-error': (form.controls.DOB.errors && form.controls.DOB.dirty), 'has-success': !form.controls.DOB.errors}">
+              <input type="date" name="DOB" class="form-control" autocomplete="off" placeholder="*DOB" formControlName="DOB" />
+              <ul class="help-block">
+                <li *ngIf="form.controls.DOB.errors?.required && form.controls.DOB.dirty">This field is required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <div [ngClass]="{'has-error': (form.controls.gender.errors && form.controls.age.dirty), 'has-success': !form.controls.gender.errors}">
+              <select name="gender" class="form-control" formControlName="gender">
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+              <ul class="help-block">
+                <li *ngIf="form.controls.gender.errors?.required && form.controls.gender.dirty">This field is required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="phone">Phone No</label>
+            <div [ngClass]="{'has-error': (form.controls.phone.errors && form.controls.phone.dirty) || (!phoneValid && form.controls.phone.dirty), 'has-success': !form.controls.phone.errors && phoneValid}">
+              <input type="number" name="phone" class="form-control" autocomplete="off" placeholder="*phone" formControlName="phone" (keyup)="checkPhone($event)"/>
+              <ul class="help-block">
+                <li *ngIf="form.controls.phone.errors?.required && form.controls.phone.dirty">This field is required</li>
+                <li *ngIf="(form.controls.phone.errors?.minlength && form.controls.phone.dirty || form.controls.phone.errors?.maxlength && form.controls.phone.dirty ) && form.controls.phone.dirty">Enter a 10 digit Phone Number</li>
+                <li *ngIf="phoneMessage && !phoneValid">{{phoneMessage}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="freetext">Free Text</label>
+            <div [ngClass]="{'has-error': (form.controls.firstname.errors && form.controls.firstname.dirty), 'has-success': !form.controls.firstname.errors}">
+              <textarea  name="freetext" class="form-control" autocomplete="off" placeholder="*optional" formControlName="freetext" >
+              </textarea>
+              <ul class="help-block">
+                <li *ngIf="(form.controls.freetext.errors?.minlength && form.controls.freetext.dirty || form.controls.freetext.errors?.maxlength && form.controls.freetext.dirty ) && form.controls.freetext.dirty">Maximum characters: 1000</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input  [disabled]="!form.valid || processing || !emailValid || !ageValid || !phoneValid" type="submit" class="btn btn-primary" value="Submit" />
+    </form>
+  </div>
+  <div class="col-md-3"></div>
+  </div>
+  <div class="row"></div>
+</div>

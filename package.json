@@ -1,0 +1,21 @@
+{
+  "name": "patientui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "build": "cd client && ng build --prod --env=prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular2-jwt": "^0.2.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.5",
+    "json-parser": "^1.1.5",
+    "mongoose": "^4.11.13"
+  }
+}

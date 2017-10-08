@@ -1,0 +1,32 @@
+.patientlist{
+    width:120px;
+    height:120px;
+    background:ghostwhite;
+    float:left;
+    margin-right:40px;
+    margin-bottom:40px;
+    border-radius:20px;
+    border:1px dotted #b9b9b9;
+}
+
+#formwrapper{
+    margin-top:20px;
+    margin-bottom:60px;
+    font-family: 'Roboto Slab', serif;
+}
+
+
+#listwrapper{
+    margin-top:15px;
+    margin-bottom:30px;
+}
+
+#firstname {
+    width:90%;margin:auto;padding:5px;padding-top:10px;word-wrap: break-word;
+    text-align:center;overflow: hidden;height:80px;
+    word-wrap: break-word; 
+}
+
+#detailsbtn{
+    width:90%;margin:auto;text-align:center;padding-top:10px;
+}
